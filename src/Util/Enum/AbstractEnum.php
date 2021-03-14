@@ -13,7 +13,7 @@ abstract class AbstractEnum
         $this->value = $value;
     }
 
-    public function equalsTo(AbstractEnum $otherEnum): bool
+    public function equals(AbstractEnum $otherEnum): bool
     {
         return (string) $this === (string) $otherEnum &&
             get_class($this) === get_class($otherEnum);
