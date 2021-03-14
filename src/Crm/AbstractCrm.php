@@ -5,6 +5,7 @@ namespace Elephantom\CrmAPI\Crm;
 
 
 use Elephantom\CrmAPI\Contracts\CrmConnectableContract;
+use Elephantom\CrmAPI\Exceptions\Crm\CrmConnectException;
 use Elephantom\CrmAPI\Util\Enum\CrmEnum;
 
 abstract class AbstractCrm
@@ -55,9 +56,14 @@ abstract class AbstractCrm
 
     /**
      * @param CrmConnectableContract $crmConnectable
+     * @throws CrmConnectException
      */
     public static function connectFor(CrmConnectableContract $crmConnectable): void
     {
+        if (static::isConnectedBy($crmConnectable)) {
+            throw new CrmConnectException('Already connected', static::class, $crmConnectable);
+        }
+
         $crmConnectable->connect(static::class);
     }
 }
