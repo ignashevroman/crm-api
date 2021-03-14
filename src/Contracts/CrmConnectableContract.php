@@ -13,4 +13,10 @@ interface CrmConnectableContract
      * @return bool
      */
     public function hasConnected($crm): bool;
+
+    /**
+     * @param AbstractCrm|string $crm
+     * @return void
+     */
+    public function connect($crm): void;
 }

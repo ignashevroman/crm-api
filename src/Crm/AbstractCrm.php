@@ -52,4 +52,12 @@ abstract class AbstractCrm
     {
         return $crmConnectable->hasConnected(static::class);
     }
+
+    /**
+     * @param CrmConnectableContract $crmConnectable
+     */
+    public static function connectFor(CrmConnectableContract $crmConnectable): void
+    {
+        $crmConnectable->connect(static::class);
+    }
 }
