@@ -3,13 +3,13 @@
 
 namespace Elephantom\CrmAPI\Util\Enum;
 
-
-class CrmEnum extends AbstractEnum
+/**
+ * Class CrmEnum
+ * @package Elephantom\CrmAPI\Util\Enum
+ *
+ * @method static CrmEnum AMOCRM()
+ */
+final class CrmEnum extends AbstractEnum
 {
-    public const AMOCRM = 'amocrm';
-
-    public static function amocrm(): CrmEnum
-    {
-        return new static(static::AMOCRM);
-    }
+    private const AMOCRM = 'amocrm';
 }

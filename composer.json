@@ -9,7 +9,9 @@
             "email": "ignashevroman99@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "myclabs/php-enum": "^1.8"
+    },
     "autoload": {
         "psr-4": {
             "Elephantom\\CrmAPI\\": "./src/"

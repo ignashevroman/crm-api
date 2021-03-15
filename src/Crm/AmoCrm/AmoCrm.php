@@ -21,7 +21,7 @@ class AmoCrm extends AbstractCrm
      */
     protected static function initType(): void
     {
-        static::$type = CrmEnum::amocrm();
+        static::$type = CrmEnum::AMOCRM();
     }
 
     /**
