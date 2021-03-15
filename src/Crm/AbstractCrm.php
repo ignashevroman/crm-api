@@ -4,6 +4,7 @@
 namespace Elephantom\CrmAPI\Crm;
 
 
+use Elephantom\CrmAPI\Contracts\CrmAuthenticationDataContract;
 use Elephantom\CrmAPI\Contracts\CrmConnectableContract;
 use Elephantom\CrmAPI\Crm\AbstractClient;
 use Elephantom\CrmAPI\Exceptions\Crm\CrmConnectException;
@@ -28,16 +29,20 @@ abstract class AbstractCrm
 
     /**
      * AbstractCrm constructor.
+     * @param CrmConnectableContract $crmConnectable
      */
-    public function __construct()
+    public function __construct(CrmConnectableContract $crmConnectable)
     {
-        $this->client = $this->createClient();
+        $this->client = $this->createClient(
+            $crmConnectable->getAuthData(static::class)
+        );
     }
 
     /**
+     * @param CrmAuthenticationDataContract $authData
      * @return AbstractClient
      */
-    abstract protected function createClient(): AbstractClient;
+    abstract protected function createClient(CrmAuthenticationDataContract $authData): AbstractClient;
 
     /**
      * @return void

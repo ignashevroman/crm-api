@@ -19,4 +19,10 @@ interface CrmConnectableContract
      * @return void
      */
     public function connect($crm): void;
+
+    /**
+     * @param AbstractCrm|string $crm
+     * @return CrmAuthenticationDataContract
+     */
+    public function getAuthData($crm): CrmAuthenticationDataContract;
 }
