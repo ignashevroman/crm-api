@@ -4,12 +4,13 @@
 namespace Elephantom\CrmAPI\Crm\AmoCrm;
 
 
+use Elephantom\CrmAPI\Contracts\CrmAuthenticationDataContract;
 use Elephantom\CrmAPI\Crm\AbstractCrm;
 use Elephantom\CrmAPI\Crm\AbstractClient;
 use Elephantom\CrmAPI\Crm\AmoCrm\AmoCrmClient;
 use Elephantom\CrmAPI\Util\Enum\CrmEnum;
 
-class AmoCrm extends AbstractCrm
+final class AmoCrm extends AbstractCrm
 {
     /**
      * @var string
@@ -27,8 +28,8 @@ class AmoCrm extends AbstractCrm
     /**
      * @inheritDoc
      */
-    protected function createClient(): AbstractClient
+    protected function createClient(CrmAuthenticationDataContract $authData): AbstractClient
     {
-        return new AmoCrmClient();
+        return new AmoCrmClient($authData);
     }
 }
