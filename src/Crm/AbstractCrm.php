@@ -29,13 +29,10 @@ abstract class AbstractCrm
 
     /**
      * AbstractCrm constructor.
-     * @param CrmConnectableContract $crmConnectable
      */
-    public function __construct(CrmConnectableContract $crmConnectable)
+    public function __construct()
     {
-        $this->client = $this->createClient(
-            $crmConnectable->getAuthData(static::class)
-        );
+        //
     }
 
     /**
