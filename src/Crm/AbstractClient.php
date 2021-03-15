@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Elephantom\CrmAPI\CrmClients;
+namespace Elephantom\CrmAPI\Crm;
 
 
 

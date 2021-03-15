@@ -5,7 +5,7 @@ namespace Elephantom\CrmAPI\Crm;
 
 
 use Elephantom\CrmAPI\Contracts\CrmConnectableContract;
-use Elephantom\CrmAPI\CrmClients\AbstractClient;
+use Elephantom\CrmAPI\Crm\AbstractClient;
 use Elephantom\CrmAPI\Exceptions\Crm\CrmConnectException;
 use Elephantom\CrmAPI\Util\Enum\CrmEnum;
 
