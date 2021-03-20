@@ -77,8 +77,7 @@ abstract class AbstractCrm
         if (static::isConnectedBy($crmConnectable)) {
             throw new CrmConnectException('Already connected', static::class, $crmConnectable);
         }
-
-        // TODO:: connection logic
+        // TODO: connection logic
     }
 
     /**

@@ -4,8 +4,6 @@
 namespace Elephantom\CrmAPI\Crm;
 
 
-
-
 abstract class AbstractClient
 {
     /**
