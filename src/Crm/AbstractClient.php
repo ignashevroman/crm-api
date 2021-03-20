@@ -5,7 +5,6 @@ namespace Elephantom\CrmAPI\Crm;
 
 
 
-use Elephantom\CrmAPI\Contracts\CrmAuthenticationDataContract;
 
 abstract class AbstractClient
 {
@@ -13,10 +12,9 @@ abstract class AbstractClient
 
     /**
      * AbstractClient constructor.
-     * @param CrmAuthenticationDataContract $authData
      */
-    public function __construct(CrmAuthenticationDataContract $authData)
+    public function __construct()
     {
-        $this->authData = $authData;
+        //
     }
 }

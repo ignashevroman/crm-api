@@ -4,10 +4,8 @@
 namespace Elephantom\CrmAPI\Crm\AmoCrm;
 
 
-use Elephantom\CrmAPI\Contracts\CrmAuthenticationDataContract;
 use Elephantom\CrmAPI\Crm\AbstractCrm;
 use Elephantom\CrmAPI\Crm\AbstractClient;
-use Elephantom\CrmAPI\Crm\AmoCrm\AmoCrmClient;
 use Elephantom\CrmAPI\Util\Enum\CrmEnum;
 
 final class AmoCrm extends AbstractCrm
@@ -28,8 +26,8 @@ final class AmoCrm extends AbstractCrm
     /**
      * @inheritDoc
      */
-    protected function createClient(CrmAuthenticationDataContract $authData): AbstractClient
+    protected function createClient(): AbstractClient
     {
-        return new AmoCrmClient($authData);
+        return new AmoCrmClient();
     }
 }
