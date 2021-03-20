@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "myclabs/php-enum": "^1.8"
+        "myclabs/php-enum": "^1.8",
+        "webmozart/assert": "^1.10"
     },
     "autoload": {
         "psr-4": {
