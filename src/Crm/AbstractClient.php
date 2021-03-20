@@ -8,8 +8,6 @@ namespace Elephantom\CrmAPI\Crm;
 
 abstract class AbstractClient
 {
-    protected $authData;
-
     /**
      * AbstractClient constructor.
      */

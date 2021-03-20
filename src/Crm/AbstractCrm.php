@@ -5,7 +5,6 @@ namespace Elephantom\CrmAPI\Crm;
 
 
 use Elephantom\CrmAPI\Contracts\CrmConnectableContract;
-use Elephantom\CrmAPI\Crm\AbstractClient;
 use Elephantom\CrmAPI\Exceptions\Crm\CrmConnectException;
 use Elephantom\CrmAPI\Util\Enum\CrmEnum;
 
@@ -22,22 +21,9 @@ abstract class AbstractCrm
     protected static $name = 'Abstract CRM';
 
     /**
-     * @var AbstractClient
+     * @var AbstractClient[]
      */
-    protected $client;
-
-    /**
-     * AbstractCrm constructor.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * @return AbstractClient
-     */
-    abstract protected function createClient(): AbstractClient;
+    protected static $clients;
 
     /**
      * @return void
@@ -45,7 +31,14 @@ abstract class AbstractCrm
     abstract protected static function initType(): void;
 
     /**
+     * @param CrmConnectableContract $crmConnectable
+     * @return AbstractClient
+     */
+    abstract protected static function createClient(CrmConnectableContract $crmConnectable): AbstractClient;
+
+    /**
      * @return CrmEnum
+     * @noinspection PhpUnused
      */
     public static function getType(): CrmEnum
     {
@@ -58,6 +51,7 @@ abstract class AbstractCrm
 
     /**
      * @return string
+     * @noinspection PhpUnused
      */
     public static function getName(): string
     {
@@ -76,6 +70,7 @@ abstract class AbstractCrm
     /**
      * @param CrmConnectableContract $crmConnectable
      * @throws CrmConnectException
+     * @noinspection PhpUnused
      */
     public static function connectFor(CrmConnectableContract $crmConnectable): void
     {
@@ -83,6 +78,21 @@ abstract class AbstractCrm
             throw new CrmConnectException('Already connected', static::class, $crmConnectable);
         }
 
-        $crmConnectable->connect(static::class);
+        // TODO:: connection logic
     }
+
+    /**
+     * @param CrmConnectableContract $crmConnectable
+     * @return AbstractClient
+     * @noinspection PhpUnused
+     */
+    public static function client(CrmConnectableContract $crmConnectable): AbstractClient
+    {
+        if (!array_key_exists($crmConnectable->getIdentifier(), static::$clients)) {
+            static::$clients[$crmConnectable->getIdentifier()] = static::createClient($crmConnectable);
+        }
+
+        return static::$clients[$crmConnectable->getIdentifier()];
+    }
+
 }

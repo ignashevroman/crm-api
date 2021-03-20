@@ -4,6 +4,7 @@
 namespace Elephantom\CrmAPI\Crm\AmoCrm;
 
 
+use Elephantom\CrmAPI\Contracts\CrmConnectableContract;
 use Elephantom\CrmAPI\Crm\AbstractCrm;
 use Elephantom\CrmAPI\Crm\AbstractClient;
 use Elephantom\CrmAPI\Util\Enum\CrmEnum;
@@ -26,7 +27,7 @@ final class AmoCrm extends AbstractCrm
     /**
      * @inheritDoc
      */
-    protected function createClient(): AbstractClient
+    protected static function createClient(CrmConnectableContract $crmConnectable): AbstractClient
     {
         return new AmoCrmClient();
     }
