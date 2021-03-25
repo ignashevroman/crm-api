@@ -11,32 +11,64 @@ use Elephantom\CrmAPI\Util\Enum\CrmEnum;
 abstract class AbstractCrm
 {
     /**
+     * Храним тип CRM из Enum
+     *
      * @var CrmEnum
      */
     protected static $type;
 
     /**
+     * Возможно понадобиться выводить назнавние CRM системы
+     *
      * @var string
      */
     protected static $name = 'Abstract CRM';
 
     /**
+     * Для разных юзеров создаем свой клиент
+     *
      * @var AbstractClient[]
      */
     protected static $clients;
 
     /**
+     * Колбэк, который должен возвращать общие (!) данные для подключения
+     * Например id и secret интеграции, но не access token
+     *
+     * @var callable
+     */
+    protected static $authConfigResolver;
+
+    /**
+     * В этом методе нужно проинициализировать поле $type
+     * По сути просто присвоить ему значение из CrmEnum
+     *
      * @return void
      */
     abstract protected static function initType(): void;
 
     /**
+     * Фабричный метод создания клиента.
+     *
      * @param CrmConnectableContract $crmConnectable
      * @return AbstractClient
      */
     abstract protected static function createClient(CrmConnectableContract $crmConnectable): AbstractClient;
 
     /**
+     * Метод для установки резолвера - функции,
+     * которая вернет конфиг для подключения
+     *
+     * @param callable $resolver
+     */
+    public static function setAuthConfigResolver(callable $resolver): void
+    {
+        static::$authConfigResolver = $resolver;
+    }
+
+    /**
+     * Получение типа CRM
+     *
      * @return CrmEnum
      * @noinspection PhpUnused
      */
@@ -50,6 +82,8 @@ abstract class AbstractCrm
     }
 
     /**
+     * Получение названия CRM
+     *
      * @return string
      * @noinspection PhpUnused
      */
@@ -59,6 +93,8 @@ abstract class AbstractCrm
     }
 
     /**
+     * Проверка подключен ли подключаемый объект к данной CRM
+     *
      * @param CrmConnectableContract $crmConnectable
      * @return bool
      */
@@ -68,6 +104,8 @@ abstract class AbstractCrm
     }
 
     /**
+     * Подключение подключаемого объекта к CRM
+     *
      * @param CrmConnectableContract $crmConnectable
      * @throws CrmConnectException
      * @noinspection PhpUnused
@@ -81,6 +119,10 @@ abstract class AbstractCrm
     }
 
     /**
+     * Метод получения клиента для подключаемого объекта.
+     * При наличии уже существующего инстанса, возвращает его,
+     * Иначе создает новый
+     *
      * @param CrmConnectableContract $crmConnectable
      * @return AbstractClient
      * @noinspection PhpUnused
