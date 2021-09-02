@@ -9,7 +9,11 @@
             "email": "ignashevroman99@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "myclabs/php-enum": "^1.8",
+        "webmozart/assert": "^1.10",
+        "amocrm/amocrm-api-library": "^0.4.6"
+    },
     "autoload": {
         "psr-4": {
             "Elephantom\\CrmAPI\\": "./src/"
